@@ -18,7 +18,7 @@ const settings = definePluginSettings({
 
 export default definePlugin({
     name: "Startup Code",
-    description: "Run JavaScript on Startup",
+    description: "Run JavaScript on Startup (WARNING: DON'T RUN CODE FROM UNTRUSTED SOURCES!)",
     authors: [
         {
             id: 766966090579836948n,
@@ -28,7 +28,7 @@ export default definePlugin({
     settings,
     patches: [],
     start() {
-        eval(settings.store.startCode as string);
+        var indirectEval = eval; indirectEval(settings.store.startCode as string);
     },
     stop() { },
 });
