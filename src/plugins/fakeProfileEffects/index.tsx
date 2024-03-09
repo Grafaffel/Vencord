@@ -11,7 +11,7 @@ import { definePluginSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
-import definePlugin, { OptionType } from "@utils/types";
+import definePlugin, { OptionType, StartAt } from "@utils/types";
 import { findByCodeLazy, findByProps } from "@webpack";
 import { Button, FluxDispatcher } from "@webpack/common";
 
@@ -40,6 +40,7 @@ export default definePlugin({
             name: "Grafaffel",
         },
     ],
+    startAt: StartAt.WebpackReady,
     settings,
     patches: [
         {
@@ -52,6 +53,8 @@ export default definePlugin({
     ],
 
     start() {
+        window.userId = findByProps("getCurrentUser").getCurrentUser().id;
+
         findByProps("getUserProfile").getUserProfile(findByProps("getCurrentUser").getCurrentUser().id).profileEffectId = settings.store.profileEffect;
 
         const ProfileEffectInvervall = setInterval(() => {
@@ -60,6 +63,15 @@ export default definePlugin({
         }, 5000);
 
         FluxDispatcher.dispatch({ type: "CURRENT_USER_UPDATE" });
+
+        findByProps("_dispatch").addInterceptor(e => {
+            if (e.type === "USER_PROFILE_FETCH_SUCCESS" && e.user.id === window.userId) {
+                findByProps("getUserProfile").getUserProfile(findByProps("getCurrentUser").getCurrentUser().id).profileEffectId = settings.store.profileEffect;
+                e.premium_type = 2;
+                e.user_profile.premium_since = "2023-08-19T15:12:15.725240+00:00";
+                e.user_profile.profileEffect.id = settings.store.profileEffect;
+            }
+        });
     },
     stop() { },
     flux: {

@@ -11,7 +11,7 @@ import { definePluginSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
-import definePlugin, { OptionType } from "@utils/types";
+import definePlugin, { OptionType, StartAt } from "@utils/types";
 import { findByCodeLazy, findByProps } from "@webpack";
 import { Button, FluxDispatcher } from "@webpack/common";
 
@@ -42,6 +42,7 @@ export default definePlugin({
         },
     ],
     settings,
+    startAt: StartAt.WebpackReady,
     patches: [
         {
             find: "DefaultCustomizationSections",
