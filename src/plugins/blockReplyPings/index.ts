@@ -65,9 +65,9 @@ export default definePlugin({
     start() {
         addNoticeStyles();
 
-        const currentUserId = findByProps("getCurrentUser").getCurrentUser().id;
+        const currentUserId = findByProps("getCurrentUser", "getUser").getCurrentUser().id;
 
-        findByProps("addInterceptor").addInterceptor(e => {
+        findByProps("addInterceptor").addInterceptor((e: { type: string; message: { mentions: any[]; content: string; }; }) => {
             if (e.type === "MESSAGE_CREATE") {
                 e.message.mentions.forEach(mention => {
                     if (mention.id === currentUserId && e.message.content.search(`<@${mention.id}>`) === -1) {
