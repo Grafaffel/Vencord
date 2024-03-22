@@ -47,7 +47,7 @@ export default definePlugin({
         {
             find: "DefaultCustomizationSections",
             replacement: {
-                match: /(?<={user:\i},"decoration"\),)/,
+                match: /(?<=USER_SETTINGS_AVATAR_DECORATION},"decoration"\),)/,
                 replace: "$self.FakeDecorationSection(),"
             }
         },
