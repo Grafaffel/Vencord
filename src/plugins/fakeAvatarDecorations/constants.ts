@@ -7,6 +7,18 @@
 
 export const decorations = [
     {
+        label: "Valo 1",
+        value: "a_904b1989077c91fca1168d39bfcaa0a4",
+    },
+    {
+        label: "Valo 2",
+        value: "a_98555e40cc6802bd3a4fed906af1d992",
+    },
+    {
+        label: "Valo 3",
+        value: "a_d22ba4f29568b6ebd2cfc5e95428f5b6",
+    },
+    {
         label: "Fire",
         value: "a_a065206df7b011a5510e4e5bca7d49be",
     },
