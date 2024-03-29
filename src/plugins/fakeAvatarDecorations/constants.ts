@@ -7,16 +7,24 @@
 
 export const decorations = [
     {
-        label: "Valo 1",
-        value: "a_904b1989077c91fca1168d39bfcaa0a4",
-    },
-    {
-        label: "Valo 2",
+        label: "A Hint of Clove",
         value: "a_98555e40cc6802bd3a4fed906af1d992",
     },
     {
-        label: "Valo 3",
-        value: "a_d22ba4f29568b6ebd2cfc5e95428f5b6",
+        label: "Omen's Cowl",
+        value: "a_c45abe8c7585fdb41b8d8d4d666f1588",
+    },
+    {
+        label: "Reyna's Leer",
+        value: "a_a87e3efa4de2956331831681231ce63b",
+    },
+    {
+        label: "FRAG OUT",
+        value: "a_09de63526a45be1ddac70e84718ee04a",
+    },
+    {
+        label: "Blade Storm",
+        value: "a_904b1989077c91fca1168d39bfcaa0a4",
     },
     {
         label: "Fire",
