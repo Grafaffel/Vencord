@@ -39,6 +39,12 @@ export default definePlugin({
             description: "The text to replace the default new member text with.",
             default: "I'm new here, say hi!",
             restartNeeded: true,
+        },
+        popupText: {
+            type: OptionType.STRING,
+            description: "The text to replace the text in the popout with.",
+            default: "System icon for new server members.",
+            restartNeeded: true,
         }
     }),
 
@@ -48,6 +54,13 @@ export default definePlugin({
             replacement: {
                 match: /"I'm new here, say hi!"/,
                 replace: "$self.settings.store.newHereText"
+            }
+        },
+        {
+            find: "NEW_MEMBER_BADGE_TOOLTIP_TEXT",
+            replacement: {
+                match: /"System icon for new server members."/,
+                replace: "$self.settings.store.popupText"
             }
         },
     ],

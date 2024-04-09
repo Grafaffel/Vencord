@@ -64,7 +64,7 @@ function TestModal(props: ModalProps) {
                                     FluxDispatcher.dispatch({ type: "CURRENT_USER_UPDATE" });
                                 }}
                             >
-                                <img style={{ width: "6rem", height: "6rem", scale: 0.4 }} src={`https://cdn.discordapp.com/avatar-decoration-presets/${decoration.value}.png?size=16&passthrough=true`} alt={`Decoration Entry (${decoration.label})`} />
+                                <img style={{ width: "6rem", height: "6rem", scale: 0.4 }} src={`https://cdn.discordapp.com/avatar-decoration-presets/${decoration.value}.png?size=128&passthrough=false`} alt={`Decoration Entry (${decoration.label})`} />
                             </Button>
                         )
                         }</Tooltip>;

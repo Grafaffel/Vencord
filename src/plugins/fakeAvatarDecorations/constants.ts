@@ -7,6 +7,10 @@
 
 export const decorations = [
     {
+        label: "Clown",
+        value: "a_5e1210779d99ece1c0b4f438a5bc6e72",
+    },
+    {
         label: "A Hint of Clove",
         value: "a_98555e40cc6802bd3a4fed906af1d992",
     },
