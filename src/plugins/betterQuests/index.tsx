@@ -37,7 +37,6 @@ const CrownIcon = () => {
     );
 };
 
-// let {route: e, selected: t, icon: n, iconClassName: a, interactiveClassName: s, text: r, children: o, locationState: d, onClick: f, className: p, role: m, "aria-posinset": C, "aria-setsize": g, ...E} = this.props;
 const { LinkButton } = findByPropsLazy("LinkButton");
 const { Routes } = findByPropsLazy("Routes");
 
