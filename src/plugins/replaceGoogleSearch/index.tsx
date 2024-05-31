@@ -15,7 +15,7 @@ const DefaultEngines = {
     DuckDuckGo: "https://duckduckgo.com/",
     Bing: "https://www.bing.com/search?q=",
     Yahoo: "https://search.yahoo.com/search?p=",
-    Github: "https://github.com/search?q=",
+    GitHub: "https://github.com/search?q=",
     Kagi: "https://kagi.com/search?q=",
     Yandex: "https://yandex.com/search/?text=",
     AOL: "https://search.aol.com/aol/search?q=",
@@ -37,7 +37,7 @@ const settings = definePluginSettings({
 });
 
 function search(src: string, engine: string) {
-    open(engine + encodeURIComponent(src), "_blank");
+    open(engine + encodeURIComponent(src.trim()), "_blank");
 }
 
 function makeSearchItem(src: string) {

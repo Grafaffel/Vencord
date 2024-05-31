@@ -206,14 +206,13 @@ export default definePlugin({
         {
             find: ".avatarPositionPanel",
             replacement: {
-                match: /(?<=avatarWrapperNonUserBot.{0,50})onClick:(\i\|\|\i)\?void 0(?<=,avatarSrc:(\i).+?)/,
-                replace: "style:($1)?{cursor:\"pointer\"}:{},onClick:$1?()=>{$self.openImage($2)}"
+                match: /(avatarWrapperNonUserBot.{0,50})onClick:(\i\|\|\i)\?void 0(?<=,avatarSrc:(\i).+?)/,
+                replace: "$1style:($2)?{cursor:\"pointer\"}:{},onClick:$2?()=>{$self.openImage($3)}"
             }
         },
         // Group DMs top small & large icon
         {
-            find: ".recipients.length>=2",
-            all: true,
+            find: /\.recipients\.length>=2(?!<isMultiUserDM.{0,50})/,
             replacement: {
                 match: /null==\i\.icon\?.+?src:(\(0,\i\.getChannelIconURL\).+?\))(?=[,}])/,
                 replace: (m, iconUrl) => `${m},onClick:()=>$self.openImage(${iconUrl})`
