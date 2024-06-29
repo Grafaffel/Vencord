@@ -19,6 +19,8 @@
 import { addAccessory } from "@api/MessageAccessories";
 import { getUserSettingLazy } from "@api/UserSettings";
 import ErrorBoundary from "@components/ErrorBoundary";
+import { Flex } from "@components/Flex";
+import { Link } from "@components/Link";
 import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
 import { Devs, SUPPORT_CHANNEL_ID } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
@@ -29,8 +31,8 @@ import { relaunch } from "@utils/native";
 import { onlyOnce } from "@utils/onlyOnce";
 import { makeCodeblock } from "@utils/text";
 import definePlugin from "@utils/types";
-import { isOutdated, update } from "@utils/updater";
-import { Alerts, Card, ChannelStore, Forms, Parser, RelationshipStore, UserStore } from "@webpack/common";
+import { checkForUpdates, isOutdated, update } from "@utils/updater";
+import { Alerts, Button, Card, ChannelStore, Forms, GuildMemberStore, Parser, RelationshipStore, showToast, Toasts, UserStore } from "@webpack/common";
 
 import gitHash from "~git-hash";
 import plugins, { PluginMeta } from "~plugins";
@@ -187,6 +189,25 @@ export default definePlugin({
                     });
                 }
             }
+
+            // @ts-ignore outdated type
+            const roles = GuildMemberStore.getSelfMember(VENCORD_GUILD_ID)?.roles;
+            if (!roles || TrustedRolesIds.some(id => roles.includes(id))) return;
+
+            if (!IS_WEB && IS_UPDATER_DISABLED) {
+                return Alerts.show({
+                    title: "Hold on!",
+                    body: <div>
+                        <Forms.FormText>You are using an externally updated Vencord version, which we do not provide support for!</Forms.FormText>
+                        <Forms.FormText className={Margins.top8}>
+                            Please either switch to an <Link href="https://vencord.dev/download">officially supported version of Vencord</Link>, or
+                            contact your package maintainer for support instead.
+                        </Forms.FormText>
+                    </div>
+                });
+            }
+
+            const repo = await VencordNative.updater.getRepo();
         }
     },
 
