@@ -17,6 +17,7 @@
 */
 
 import { addAccessory } from "@api/MessageAccessories";
+import { definePluginSettings } from "@api/Settings";
 import { getUserSettingLazy } from "@api/UserSettings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
@@ -37,7 +38,7 @@ import { Alerts, Button, Card, ChannelStore, Forms, GuildMemberStore, Parser, Re
 import gitHash from "~git-hash";
 import plugins, { PluginMeta } from "~plugins";
 
-import settings from "./settings";
+import SettingsPlugin from "./settings";
 
 const VENCORD_GUILD_ID = "1015060230222131221";
 const VENBOT_USER_ID = "1017176847865352332";
@@ -86,7 +87,7 @@ async function generateDebugInfoMessage() {
     const info = {
         Vencord:
             `v${VERSION} • [${gitHash}](<https://github.com/Vendicated/Vencord/commit/${gitHash}>)` +
-            `${settings.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
+            `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: window.navigator.platform
     };
@@ -132,12 +133,18 @@ function generatePluginList() {
 
 const checkForUpdatesOnce = onlyOnce(checkForUpdates);
 
+const settings = definePluginSettings({}).withPrivateSettings<{
+    dismissedDevBuildWarning?: boolean;
+}>();
+
 export default definePlugin({
     name: "SupportHelper",
     required: true,
     description: "Helps us provide support to you",
     authors: [Devs.Ven],
     dependencies: ["CommandsAPI", "UserSettingsAPI", "MessageAccessoriesAPI"],
+
+    settings,
 
     patches: [{
         find: ".BEGINNING_DM.format",
