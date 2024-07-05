@@ -87,6 +87,10 @@ if (!IS_VANILLA) {
                     options.backgroundColor = "#00000000";
                 }
 
+                if (settings.alwaysOnTop) {
+                    options.alwaysOnTop = true;
+                }
+
                 const needsVibrancy = process.platform === "darwin" && settings.macosVibrancyStyle;
 
                 if (needsVibrancy) {

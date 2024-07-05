@@ -95,6 +95,11 @@ function VencordSettings() {
                 title: "Enable window transparency.",
                 note: "You need a theme that supports transparency or this will do nothing. WILL STOP THE WINDOW FROM BEING RESIZABLE!! Requires a full restart"
             },
+            !IS_WEB && {
+                key: "alwaysOnTop",
+                title: "Enable alway on top.",
+                note: "Requires a full restart"
+            },
             !IS_WEB && isWindows && {
                 key: "winCtrlQ",
                 title: "Register Ctrl+Q as shortcut to close Discord (Alternative to Alt+F4)",

@@ -37,6 +37,7 @@ export interface Settings {
     enabledThemes: string[];
     frameless: boolean;
     transparent: boolean;
+    alwaysOnTop: boolean;
     winCtrlQ: boolean;
     macosVibrancyStyle:
     | "content"
@@ -85,6 +86,7 @@ const DefaultSettings: Settings = {
     enableReactDevtools: false,
     frameless: false,
     transparent: false,
+    alwaysOnTop: false,
     winCtrlQ: false,
     macosVibrancyStyle: undefined,
     disableMinSize: false,
