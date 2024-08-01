@@ -50,16 +50,16 @@ export default definePlugin({
 
     patches: [
         {
-            find: "NEW_MEMBER_BADGE_TOOLTIP_TEXT",
+            find: "NewUserLargeIcon",
             replacement: {
-                match: /"I'm new here, say hi!"/,
+                match: "I\\'m new here, say hi!",
                 replace: "$self.settings.store.newHereText"
             }
         },
         {
-            find: "NEW_MEMBER_BADGE_TOOLTIP_TEXT",
+            find: "NEW_MEMBER_BADGE_POPOUT_TEXT",
             replacement: {
-                match: /"System icon for new server members."/,
+                match: "System icon for new server members.",
                 replace: "$self.settings.store.popupText"
             }
         },
